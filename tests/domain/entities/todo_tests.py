@@ -1,5 +1,3 @@
-import pytest
-
 from src.domain.entities.todo import Todo
 from src.domain.entities.todo import TodoStatus
 
@@ -33,4 +31,4 @@ class TestTodo:
         result = todo.is_done()
 
         # assert
-        assert result
+        assert result is False
