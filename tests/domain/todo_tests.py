@@ -1,5 +1,5 @@
-from src.domain.entities.todo import Todo
-from src.domain.entities.todo import TodoStatus
+from src.domain.todo import Todo
+from src.domain.todo import TodoStatus
 
 
 class TestTodo:

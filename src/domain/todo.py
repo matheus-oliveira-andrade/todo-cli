@@ -1,5 +1,5 @@
-from src.domain.entities.entity import Entity
-from src.domain.enums.todo_status import TodoStatus
+from src.domain.entity import Entity
+from src.domain.todo_status import TodoStatus
 
 from datetime import datetime
 import uuid
