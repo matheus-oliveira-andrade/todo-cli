@@ -1,4 +1,4 @@
-from src.application.use_cases.ports.todo_repository import TodoRepository
+from src.application.repositories.todo_repository import TodoRepository
 
 
 class FileTodoRepository(TodoRepository):
