@@ -1,6 +1,6 @@
 import logging
 
-from src.domain.todo import Todo
+from todo_cli.domain.todo import Todo
 
 
 class AddTodoUseCase:

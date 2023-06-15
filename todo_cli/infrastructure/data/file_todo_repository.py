@@ -1,4 +1,4 @@
-from src.application.repositories.todo_repository import TodoRepository
+from todo_cli.application.repositories.todo_repository import TodoRepository
 
 
 class FileTodoRepository(TodoRepository):
