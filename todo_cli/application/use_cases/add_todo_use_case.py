@@ -1,6 +1,7 @@
 import logging
 
 from todo_cli.domain.todo import Todo
+from ..dtos.add_todo_dto import AddTodoDto
 
 
 class AddTodoUseCase:
@@ -9,7 +10,7 @@ class AddTodoUseCase:
         self.logger = logging.getLogger()
         self.todo_repository = todo_repository
 
-    def handle(self, add_todo_dto) -> bool:
+    def handle(self, add_todo_dto: AddTodoDto) -> bool:
         self.logger.info(f"adding todo {add_todo_dto.title}")
 
         todo = Todo.create_new(add_todo_dto.title, add_todo_dto.description, add_todo_dto.tags)

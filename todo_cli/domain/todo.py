@@ -7,7 +7,8 @@ import uuid
 
 class Todo(Entity):
 
-    def __init__(self, title, description, status, tags, todo_id, created_at, modified_at):
+    def __init__(self, title: str, description: str, status: TodoStatus, tags: list[str], todo_id: str,
+                 created_at: datetime, modified_at: datetime):
         super().__init__(todo_id, created_at, modified_at)
 
         self.__title = title
@@ -39,7 +40,7 @@ class Todo(Entity):
         return self.__status
 
     @staticmethod
-    def create_new(title, description, tags) -> 'Todo':
+    def create_new(title: str, description: str, tags: list[str]) -> 'Todo':
         now = datetime.utcnow()
         todo_id = str(uuid.uuid4())
 
