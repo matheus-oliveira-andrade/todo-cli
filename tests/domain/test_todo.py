@@ -1,7 +1,7 @@
 import unittest
 
-from todo_cli.domain.todo import Todo
-from todo_cli.domain.todo import TodoStatus
+from todo.domain.todo import Todo
+from todo.domain.todo import TodoStatus
 
 
 class TestTodo(unittest.TestCase):

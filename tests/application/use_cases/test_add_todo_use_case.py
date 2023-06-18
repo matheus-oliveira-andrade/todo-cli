@@ -1,5 +1,5 @@
-from todo_cli.application.dtos.add_todo_dto import AddTodoDto
-from todo_cli.application.use_cases.add_todo_use_case import AddTodoUseCase
+from todo.application.dtos.add_todo_dto import AddTodoDto
+from todo.application.use_cases.add_todo_use_case import AddTodoUseCase
 
 from unittest.mock import Mock
 from unittest import TestCase

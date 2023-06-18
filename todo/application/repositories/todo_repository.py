@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from todo_cli.domain.todo import Todo
+from todo.domain.todo import Todo
 
 
 class TodoRepository(ABC):

@@ -1,5 +1,5 @@
-from todo_cli.domain.entity import Entity
-from todo_cli.domain.todo_status import TodoStatus
+from todo.domain.entity import Entity
+from todo.domain.todo_status import TodoStatus
 
 from datetime import datetime
 import uuid

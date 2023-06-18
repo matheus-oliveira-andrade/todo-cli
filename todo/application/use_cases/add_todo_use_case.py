@@ -1,6 +1,6 @@
 import logging
 
-from todo_cli.domain.todo import Todo
+from todo.domain.todo import Todo
 from ..dtos.add_todo_dto import AddTodoDto
 
 
