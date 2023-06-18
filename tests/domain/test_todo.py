@@ -1,10 +1,10 @@
-import unittest
+from unittest import TestCase
 
 from todo.domain.todo import Todo
 from todo.domain.todo import TodoStatus
 
 
-class TestTodo(unittest.TestCase):
+class TestTodo(TestCase):
     def test_create_new_should_return_new_todo(self):
         # arrange & act
         todo = Todo.create_new('todo', 'todo description', ['tag1', 'tag2'])

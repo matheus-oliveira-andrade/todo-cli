@@ -6,7 +6,6 @@ from unittest import TestCase
 
 
 class TestAddTodoUseCase(TestCase):
-
     def test_handle_should_create_todo_with_success(self):
         # arrange
         todo_repository_mock = Mock()
