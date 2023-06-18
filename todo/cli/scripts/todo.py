@@ -1,12 +1,6 @@
 import click
 
 
-@click.group()
-def cli():
-    """Commands to manipulate todos"""
-    pass
-
-
 @click.command()
 def add():
     """Add new todo"""
@@ -14,10 +8,20 @@ def add():
 
 
 @click.command()
-def list():
+def list_all():
     """List todos"""
     click.echo('list')
 
 
-cli.add_command(add)
-cli.add_command(list)
+@click.group()
+def setup_cli():
+    """Commands to manipulate todos"""
+    pass
+
+
+setup_cli.add_command(add)
+setup_cli.add_command(list_all)
+
+
+if __name__ == '__main__':
+    setup_cli()
