@@ -7,8 +7,7 @@ import uuid
 
 class Todo(Entity):
 
-    def __init__(self, title: str, description: str, status: TodoStatus, tags: list[str], todo_id: str,
-                 created_at: datetime, modified_at: datetime):
+    def __init__(self, title: str, description: str, status: TodoStatus, tags: list[str], todo_id: str, created_at: datetime, modified_at: datetime):
         super().__init__(todo_id, created_at, modified_at)
 
         self.__title = title
