@@ -7,3 +7,7 @@ class TodoRepository(ABC):
     def save(self, todo: Todo) -> bool:
         pass
 
+    @abstractmethod
+    def get_all(self) -> list[Todo]:
+        pass
+

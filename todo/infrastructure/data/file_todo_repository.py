@@ -10,7 +10,7 @@ from todo.domain.todo import Todo
 class FileTodoRepository(TodoRepository):
 
     @staticmethod
-    def __init() -> Connection:
+    def __db_init() -> Connection:
         temp_dir = tempfile.gettempdir()
 
         db_file = os.path.join(temp_dir, 'todos.db')
@@ -33,7 +33,7 @@ class FileTodoRepository(TodoRepository):
         return conn
 
     def save(self, todo: Todo) -> bool:
-        connection = self.__init()
+        connection = self.__db_init()
         cursor = connection.cursor()
 
         tags_str = json.dumps(todo.tags)
@@ -45,7 +45,7 @@ class FileTodoRepository(TodoRepository):
         return True
 
     def get_all(self) -> list[Todo]:
-        connection = self.__init()
+        connection = self.__db_init()
         cursor = connection.cursor()
 
         cursor.execute("SELECT id, title, description, status, tags, todo_id, created_at, modified_at FROM todos")
@@ -62,3 +62,5 @@ class FileTodoRepository(TodoRepository):
             todos.append(todo)
 
         connection.close()
+
+        return todos
