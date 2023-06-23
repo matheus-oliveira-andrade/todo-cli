@@ -60,7 +60,7 @@ class FileTodoRepository(TodoRepository):
 
         todos = []
         for row in rows:
-            title, description, status, tags_str, todo_id, created_at, modified_at = row
+            _, title, description, status, tags_str, todo_id, created_at, modified_at = row
 
             tags = json.loads(tags_str)
 
