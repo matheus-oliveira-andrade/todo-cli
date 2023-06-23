@@ -12,8 +12,8 @@ class FileTodoRepository(TodoRepository):
     @staticmethod
     def __db_init() -> Connection:
         temp_dir = tempfile.gettempdir()
-
         db_file = os.path.join(temp_dir, 'todos.db')
+
         conn = connect(db_file)
 
         cursor = conn.cursor()
@@ -28,8 +28,6 @@ class FileTodoRepository(TodoRepository):
                                modified_at TIMESTAMP
                            )''')
 
-        conn.commit()
-
         return conn
 
     def save(self, todo: Todo) -> bool:
@@ -38,9 +36,18 @@ class FileTodoRepository(TodoRepository):
 
         tags_str = json.dumps(todo.tags)
 
-        cursor.execute(
-            "INSERT INTO todos (title, description, status, tags, todo_id, created_at, modified_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (todo.title, todo.description, str(todo.status), tags_str, todo.id, todo.created_at, todo.modified_at))
+        query = """
+            INSERT INTO todos (title, description, status, tags, todo_id, created_at, modified_at) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """
+        values = (todo.title, todo.description, str(todo.status), tags_str, todo.id, str(todo.created_at), str(todo.modified_at))
+
+        cursor.execute(query, values)
+        
+        connection.commit()
+
+        cursor.close()
+        connection.close()
 
         return True
 
