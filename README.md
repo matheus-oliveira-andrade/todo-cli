@@ -1,7 +1,7 @@
 ### Running
 
 ```bash
-pip install python # if not installed
+pip install poetry # if not installed
 ```
 
 ```bash
