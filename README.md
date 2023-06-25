@@ -1,3 +1,7 @@
+### todo-cli
+
+Todos manager using only CLI with click and poetry
+
 ### Running
 
 ```bash
