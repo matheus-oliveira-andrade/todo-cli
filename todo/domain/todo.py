@@ -16,7 +16,7 @@ class Todo(Entity):
         self.__tags: list[str] = tags
 
     def mark_as_done(self) -> None:
-        self._modified_at = datetime.utcnow().time()
+        self._modified_at = datetime.utcnow()
         self.__status = TodoStatus.DONE
 
     def is_done(self) -> bool:
