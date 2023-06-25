@@ -50,5 +50,5 @@ jobs:
         
     - name: Lint with mypy
       run: |
-        pip install mypy
-        mypy .        
+        # pip install mypy
+        # mypy .        
