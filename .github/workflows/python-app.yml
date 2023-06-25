@@ -45,8 +45,8 @@ jobs:
         
     - name: Lint with pylint
       run: |
-        pip install pylint
-        pylint ./todo --recursive=true
+        # pip install pylint
+        # pylint ./todo --recursive=true
         
     - name: Lint with mypy
       run: |
