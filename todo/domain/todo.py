@@ -10,10 +10,10 @@ class Todo(Entity):
     def __init__(self, title: str, description: str, status: TodoStatus, tags: list[str], todo_id: str, created_at: datetime, modified_at: datetime):
         super().__init__(todo_id, created_at, modified_at)
 
-        self.__title = title
-        self.__description = description
-        self.__status = status
-        self.__tags = tags
+        self.__title: str = title
+        self.__description: str = description
+        self.__status: TodoStatus = status
+        self.__tags: list[str] = tags
 
     def mark_as_done(self) -> None:
         self._modified_at = datetime.utcnow().time()
