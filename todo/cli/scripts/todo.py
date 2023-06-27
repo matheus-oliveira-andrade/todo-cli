@@ -47,7 +47,7 @@ def list_all(detailed: bool) -> None:
         click.echo(print_todo(todo, detailed))
 
 
-def echo_detailed_todo(todo: Todo):
+def print_detailed_todo(todo: Todo):
     click.secho(f'ID: {todo.id}', fg='green')
     click.secho(f'Title: {todo.title}', fg='green')
     click.secho(f'Description: {todo.title}')
@@ -67,7 +67,7 @@ def details(todo_id: str) -> None:
     if todo is None:
         click.secho(f'Todo not found', fg='red')
 
-    echo_detailed_todo(todo)
+    print_detailed_todo(todo)
 
 
 @click.group()
