@@ -11,3 +11,6 @@ class TodoRepository(ABC):
     def get_all(self) -> list[Todo]:
         pass
 
+    @abstractmethod
+    def get_by_todo_id(self, todo_id: str) -> Todo:
+        pass

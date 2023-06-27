@@ -9,12 +9,14 @@ from todo.application.use_cases.add_todo_use_case import AddTodoUseCase
 
 from todo.application.use_cases.get_todos_use_case import GetTodosUseCase
 
+from todo.application.use_cases.get_todo_by_todo_id_use_case import GetTodoByTodoIdUseCase
+
 
 @click.command()
 @click.option('--title', type=str, required=True, help='title of todo')
 @click.option('--description', type=str, required=True, help='description of todo')
 @click.option('--tags', multiple=True, type=str, default=[], required=False, help='tags for todo')
-def add(title, description, tags):
+def add(title: str, description: str, tags: list[str]):
     """Add new todo"""
     add_todo_dto = AddTodoDto(title, description, tags)
 
@@ -33,7 +35,7 @@ def print_todo(todo: Todo, detailed: bool) -> str:
 
 @click.command()
 @click.option('--detailed/-d', is_flag=True, default=False, help='Todo infos detailed')
-def list_all(detailed) -> None:
+def list_all(detailed: bool) -> None:
     """List all todos"""
     todos = GetTodosUseCase(FileTodoRepository()).handle()
 
@@ -45,14 +47,38 @@ def list_all(detailed) -> None:
         click.echo(print_todo(todo, detailed))
 
 
+def echo_detailed_todo(todo: Todo):
+    click.secho(f'ID: {todo.id}', fg='green')
+    click.secho(f'Title: {todo.title}', fg='green')
+    click.secho(f'Description: {todo.title}')
+    click.secho(f'Tags: {todo.tags}')
+    click.secho(f'Status: {todo.status.name} {todo.modified_at if todo.is_done() else ""}')
+    click.secho('')
+
+    click.secho(f'Created at: {todo.created_at}')
+
+
+@click.command()
+@click.option('--todo-id', required=True, help='Todo id')
+def details(todo_id: str) -> None:
+    """Get details of todo"""
+    todo = GetTodoByTodoIdUseCase(FileTodoRepository()).handle(todo_id)
+
+    if todo is None:
+        click.secho(f'Todo not found', fg='red')
+
+    echo_detailed_todo(todo)
+
+
 @click.group()
-def setup_cli():
+def setup_cli() -> None:
     """Commands to manipulate todos"""
     pass
 
 
 setup_cli.add_command(add)
 setup_cli.add_command(list_all)
+setup_cli.add_command(details)
 
 
 if __name__ == '__main__':

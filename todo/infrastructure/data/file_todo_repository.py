@@ -12,7 +12,6 @@ class FileTodoRepository(TodoRepository):
 
     DB_NAME: str = 'todos.db'
 
-
     @staticmethod
     def __db_init() -> Connection:
         temp_dir = tempfile.gettempdir()
@@ -75,3 +74,35 @@ class FileTodoRepository(TodoRepository):
         connection.close()
 
         return todos
+
+    def get_by_todo_id(self, todo_id: str) -> Todo:
+        connection = self.__db_init()
+        cursor = connection.cursor()
+
+        query = """
+            SELECT id, 
+                   title, 
+                   description, 
+                   status, 
+                   tags, 
+                   todo_id, 
+                   created_at, 
+                   modified_at 
+              FROM todos
+              WHERE todo_id = ?
+        """
+
+        cursor.execute(query, [todo_id])
+
+        row = cursor.fetchone()
+
+        _, title, description, status_str, tags_str, todo_id, created_at, modified_at = row
+
+        tags = json.loads(tags_str)
+
+        todo = Todo(title, description, TodoStatus[status_str], tags, todo_id, created_at, modified_at)
+
+        return todo
+
+
+    # def __from_db_to_entity(self):
