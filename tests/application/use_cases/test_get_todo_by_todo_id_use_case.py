@@ -25,7 +25,7 @@ class TestGetTodoByTodoIdUseCase(TestCase):
 
         todo_repository_mock.get_by_todo_id.assert_called()
 
-    def test_handle_when_not_found_todos_should_return_empty(self):
+    def test_handle_when_not_found_todo_should_return_none(self):
         # arrange
         todo_repository_mock = Mock()
         todo_repository_mock.get_by_todo_id.side_effect = lambda todo_id: None
