@@ -14,3 +14,7 @@ class TodoRepository(ABC):
     @abstractmethod
     def get_by_todo_id(self, todo_id: str) -> Todo:
         pass
+
+    @abstractmethod
+    def update(self, todo: Todo) -> bool:
+        pass
