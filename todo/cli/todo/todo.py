@@ -4,30 +4,12 @@ from todo.domain.todo import Todo
 
 from todo.infrastructure.data.file_todo_repository import FileTodoRepository
 
-from todo.application.dtos.add_todo_dto import AddTodoDto
-from todo.application.use_cases.add_todo_use_case import AddTodoUseCase
-
 from ..todo.commands.list import list as list_command
-
-
+from ..todo.commands.add import add as add_command
 
 from todo.application.use_cases.get_todo_by_todo_id_use_case import GetTodoByTodoIdUseCase
 
 from todo.application.use_cases.mark_todo_as_done_use_case import MarkTodoAsDoneUseCase
-
-
-@click.command()
-@click.option('--title', type=str, required=True, help='title of todo')
-@click.option('--description', type=str, required=True, help='description of todo')
-@click.option('--tags', multiple=True, type=str, default=[], required=False, help='tags for todo')
-def add(title: str, description: str, tags: list[str]):
-    """Add new todo"""
-    add_todo_dto = AddTodoDto(title, description, tags)
-
-    success = AddTodoUseCase(FileTodoRepository()).handle(add_todo_dto)
-
-    if success:
-        click.echo("todo created!")
 
 
 def print_detailed_todo(todo: Todo):
@@ -69,7 +51,7 @@ def setup_cli() -> None:
     pass
 
 
-setup_cli.add_command(add)
+setup_cli.add_command(add_command)
 setup_cli.add_command(list_command)
 setup_cli.add_command(details)
 setup_cli.add_command(mark_as_done)
