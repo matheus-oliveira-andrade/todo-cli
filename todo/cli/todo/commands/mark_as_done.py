@@ -5,7 +5,7 @@ from todo.application.use_cases.mark_todo_as_done_use_case import MarkTodoAsDone
 
 
 @click.command()
-@click.option('--todo-id', required=True, help='Todo id')
+@click.option('--todo-id', required=True, type=str, help='Todo id')
 def mark_as_done(todo_id: str) -> None:
     """Update status for DONE"""
     success, message = MarkTodoAsDoneUseCase(FileTodoRepository()).handle(todo_id)

@@ -17,7 +17,7 @@ def print_detailed_todo(todo: Todo):
 
 
 @click.command()
-@click.option('--todo-id', required=True, help='Todo id')
+@click.option('--todo-id', required=True, type=str, help='Todo id')
 def details(todo_id: str) -> None:
     """Get details"""
     todo = GetTodoByTodoIdUseCase(FileTodoRepository()).handle(todo_id)

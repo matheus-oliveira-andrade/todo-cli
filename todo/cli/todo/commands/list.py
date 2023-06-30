@@ -13,7 +13,7 @@ def print_todo(todo: Todo, detailed: bool) -> str:
 
 
 @click.command()
-@click.option('--detailed/-d', is_flag=True, default=False, help='Todo infos detailed')
+@click.option('--detailed/-d', is_flag=True, default=False, type=bool, help='Todo infos detailed')
 def list(detailed: bool) -> None:
     """List all todos"""
     todos = GetTodosUseCase(FileTodoRepository()).handle()
