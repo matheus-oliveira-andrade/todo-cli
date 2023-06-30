@@ -118,7 +118,7 @@ class FileTodoRepository(TodoRepository):
                         tags = ?, 
                         created_at = ?, 
                         modified_at = ? 
-                    WHERE todo_id = {todo.id}                  
+                    WHERE todo_id = ?              
                     """
 
         values = [
@@ -127,7 +127,8 @@ class FileTodoRepository(TodoRepository):
             str(todo.status.name),
             tags_str,
             str(todo.created_at),
-            str(todo.modified_at)
+            str(todo.modified_at),
+            todo.id
         ]
 
         cursor.execute(query, values)
