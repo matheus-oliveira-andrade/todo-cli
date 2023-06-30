@@ -1,6 +1,7 @@
 import logging
 
 from ..repositories.todo_repository import TodoRepository
+from typing import Tuple
 
 
 class MarkTodoAsDoneUseCase:
@@ -8,7 +9,7 @@ class MarkTodoAsDoneUseCase:
         self.logger = logging.getLogger('MarkTodoAsDoneUseCase')
         self.todo_repository = todo_repository
 
-    def handle(self, todo_id: str) -> (bool, str):
+    def handle(self, todo_id: str) -> Tuple[bool, str]:
         self.logger.info("marking todo as done")
 
         todo = self.todo_repository.get_by_todo_id(todo_id)
@@ -18,4 +19,4 @@ class MarkTodoAsDoneUseCase:
 
         todo.mark_as_done()
 
-        return self.todo_repository.update(todo), None
+        return self.todo_repository.update(todo), ""

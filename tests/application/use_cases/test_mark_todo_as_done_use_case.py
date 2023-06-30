@@ -24,7 +24,7 @@ class TestMarkTodoAsDoneUseCase(TestCase):
 
         # assert
         self.assertTrue(result)
-        self.assertIsNone(message)
+        self.assertEqual("", message)
 
         todo_repository_mock.get_by_todo_id.assert_called()
         todo_repository_mock.update.assert_called()
