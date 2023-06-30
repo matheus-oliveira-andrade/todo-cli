@@ -13,6 +13,7 @@ todo = 'todo.cli.scripts.todo:setup_cli'
 python = "^3.11"
 click = "^8.1.3"
 pytest = "^7.4.0"
+coverage = "^7.2.7"
 
 
 [build-system]

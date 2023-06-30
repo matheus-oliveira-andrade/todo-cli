@@ -9,7 +9,6 @@ from todo.domain.todo_status import TodoStatus
 
 
 class FileTodoRepository(TodoRepository):
-
     DB_NAME: str = 'todos.db'
 
     @staticmethod
@@ -43,10 +42,11 @@ class FileTodoRepository(TodoRepository):
             INSERT INTO todos (title, description, status, tags, todo_id, created_at, modified_at) 
             VALUES (?, ?, ?, ?, ?, ?, ?)
             """
-        values = (todo.title, todo.description, str(todo.status.name), tags_str, todo.id, str(todo.created_at), str(todo.modified_at))
+        values = (todo.title, todo.description, str(todo.status.name), tags_str, todo.id, str(todo.created_at),
+                  str(todo.modified_at))
 
         cursor.execute(query, values)
-        
+
         connection.commit()
 
         cursor.close()
@@ -104,5 +104,37 @@ class FileTodoRepository(TodoRepository):
 
         return todo
 
+    def update(self, todo: Todo) -> bool:
+        connection = self.__db_init()
+        cursor = connection.cursor()
 
-    # def __from_db_to_entity(self):
+        tags_str = json.dumps(todo.tags)
+
+        query = f"""
+                    UPDATE todos 
+                    SET title = ?, 
+                        description = ?, 
+                        status = ?, 
+                        tags = ?, 
+                        created_at = ?, 
+                        modified_at = ? 
+                    WHERE todo_id = {todo.id}                  
+                    """
+
+        values = [
+            todo.title,
+            todo.description,
+            str(todo.status.name),
+            tags_str,
+            str(todo.created_at),
+            str(todo.modified_at)
+        ]
+
+        cursor.execute(query, values)
+
+        connection.commit()
+
+        cursor.close()
+        connection.close()
+
+        return True
