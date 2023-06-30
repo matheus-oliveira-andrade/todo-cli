@@ -11,6 +11,8 @@ from todo.application.use_cases.get_todos_use_case import GetTodosUseCase
 
 from todo.application.use_cases.get_todo_by_todo_id_use_case import GetTodoByTodoIdUseCase
 
+from todo.application.use_cases.mark_todo_as_done_use_case import MarkTodoAsDoneUseCase
+
 
 @click.command()
 @click.option('--title', type=str, required=True, help='title of todo')
@@ -70,6 +72,16 @@ def details(todo_id: str) -> None:
     print_detailed_todo(todo)
 
 
+@click.command()
+@click.option('--todo-id', required=True, help='Todo id')
+def mark_as_done(todo_id: str) -> None:
+    """Get details of todo"""
+    success, message = MarkTodoAsDoneUseCase(FileTodoRepository()).handle(todo_id)
+
+    if not success:
+        click.secho(message, fg='red')
+
+
 @click.group()
 def setup_cli() -> None:
     """Commands to manipulate todos"""
@@ -79,6 +91,7 @@ def setup_cli() -> None:
 setup_cli.add_command(add)
 setup_cli.add_command(list)
 setup_cli.add_command(details)
+setup_cli.add_command(mark_as_done)
 
 
 if __name__ == '__main__':
