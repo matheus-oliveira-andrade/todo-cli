@@ -35,7 +35,7 @@ def print_todo(todo: Todo, detailed: bool) -> str:
 
 @click.command()
 @click.option('--detailed/-d', is_flag=True, default=False, help='Todo infos detailed')
-def list_all(detailed: bool) -> None:
+def list(detailed: bool) -> None:
     """List all todos"""
     todos = GetTodosUseCase(FileTodoRepository()).handle()
 
@@ -77,7 +77,7 @@ def setup_cli() -> None:
 
 
 setup_cli.add_command(add)
-setup_cli.add_command(list_all)
+setup_cli.add_command(list)
 setup_cli.add_command(details)
 
 
