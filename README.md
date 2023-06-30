@@ -1,6 +1,6 @@
 ### todo-cli
 
-Todos manager using only CLI
+Todos manager using CLI
 
 ### Running
 
