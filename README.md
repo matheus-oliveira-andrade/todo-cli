@@ -1,6 +1,6 @@
 ### todo-cli
 
-Todos manager using only CLI with click and poetry
+Todos manager using only CLI
 
 ### Running
 
