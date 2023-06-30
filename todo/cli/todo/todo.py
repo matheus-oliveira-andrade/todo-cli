@@ -75,7 +75,7 @@ def details(todo_id: str) -> None:
 @click.command()
 @click.option('--todo-id', required=True, help='Todo id')
 def mark_as_done(todo_id: str) -> None:
-    """Get details of todo"""
+    """Update status for DONE"""
     success, message = MarkTodoAsDoneUseCase(FileTodoRepository()).handle(todo_id)
 
     if not success:
