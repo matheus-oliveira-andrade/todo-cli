@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "todo"}]
 
 [tool.poetry.scripts]
-todo = 'todo.cli.scripts.todo:setup_cli'
+todo = 'todo.cli.todo.todo:setup_cli'
 
 [tool.poetry.dependencies]
 python = "^3.11"
