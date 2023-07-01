@@ -1,6 +1,6 @@
 import click
 
-from todo.infrastructure.data.file_todo_repository import FileTodoRepository
+from todo.adapters.data.repositories.file_todo_repository import FileTodoRepository
 from todo.application.dtos.add_todo_dto import AddTodoDto
 from todo.application.use_cases.add_todo_use_case import AddTodoUseCase
 

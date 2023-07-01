@@ -1,7 +1,7 @@
 import click
 
 from todo.domain.todo import Todo
-from todo.infrastructure.data.file_todo_repository import FileTodoRepository
+from todo.adapters.data.repositories.file_todo_repository import FileTodoRepository
 from todo.application.use_cases.get_todos_use_case import GetTodosUseCase
 
 
