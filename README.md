@@ -17,7 +17,7 @@ poetry shell
 ```
 
 ```bash
-todo 
+todo --help # to see available commands
 ```
 
 ```bash
